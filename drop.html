@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        div{
+            width: 50px;
+            height: 50px;
+            background: red;
+        }
+    </style>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <button onclick="test()">点我</button>
+</head>
+<body>
+<script>
+    var elems = document.getElementsByTagName('div');
+    for(var i = 0; i < elems.length ; i++){
+        (function (index) {
+            elems[i].addEventListener('click',function (e) {
+                    alert(index)
+            })
+        })(i)
+    }
+    var counter = (function(){
+        var i = 0;
+        return {
+            get: function(){
+                return i;
+            },
+            set: function(val){
+                i = val;
+            },
+            increment: function(){
+                return ++i;
+            }
+        }
+    }());
+    console.log(counter.get());//0
+    counter.set(4);
+    console.log(counter.increment());//0
+    console.log(counter.increment());//0
+    console.log(counter.get());
+    function test() {
+        var event = window.event || arguments[0];//获取event对象
+        var target = event.target || event.srcElement;
+        console.log(event);
+        console.log(target);
+    }
+</script>
+</body>
+</html>
